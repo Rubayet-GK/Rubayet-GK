@@ -1,11 +1,13 @@
 let questions = [];
 let currentQuestion = {};
 let answered = false;
+let score = 0;
 
 async function loadQuestions() {
-  const res = await fetch("questions.json");
+  const res = await fetch("questions.json"); // your questions file
   questions = await res.json();
 
+  // Shuffle questions
   questions = questions.sort(() => 0.5 - Math.random());
 
   loadQuestion();
@@ -16,7 +18,8 @@ function loadQuestion() {
   document.getElementById("result").innerText = "";
 
   if (questions.length === 0) {
-    document.body.innerHTML = "<h2>Quiz Finished!</h2>";
+    document.body.innerHTML = `<h2>Quiz Finished!</h2>
+                               <p>Your final score: ${score}</p>`;
     return;
   }
 
@@ -48,27 +51,34 @@ function checkAnswer(selected, clickedBtn) {
     btn.disabled = true;
 
     if (index === currentQuestion.answer) {
-      btn.style.background = "green";
+      btn.classList.add("correct");
     }
 
     if (index === selected && selected !== currentQuestion.answer) {
-      btn.style.background = "red";
+      btn.classList.add("wrong");
     }
   });
 
   const result = document.getElementById("result");
+  const scoreEl = document.getElementById("score");
 
   if (selected === currentQuestion.answer) {
+    score += 1;
     result.innerText = "✅ Correct!";
     result.style.color = "green";
   } else {
-    result.innerText = "❌ Wrong!";
+    score -= 1;
+    result.innerText = `❌ Wrong! Correct answer: ${currentQuestion.options[currentQuestion.answer]}`;
     result.style.color = "red";
   }
 
+  // Update live score
+  scoreEl.innerText = `Score: ${score}`;
+
   setTimeout(() => {
     loadQuestion();
-  }, 2000);
+  }, 1500);
 }
 
+// Start quiz
 loadQuestions();
