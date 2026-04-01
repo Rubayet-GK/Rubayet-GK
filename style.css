@@ -42,17 +42,17 @@ button:hover {
   margin-top: 10px;
 }
 
-/* Correct / Wrong flash colors */
+/* Correct / Wrong button colors */
 .correct {
-  background-color: #2ecc71 !important; /* green */
+  background-color: #2ecc71 !important;
   color: white;
 }
 
 .wrong {
-  background-color: #e74c3c !important; /* red */
+  background-color: #e74c3c !important;
+  color: white;
 }
 
-/* Button press effect */
 button:active {
   transform: scale(0.97);
 }
