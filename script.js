@@ -7,7 +7,7 @@ async function loadQuestions() {
   const res = await fetch("questions.json"); // your questions file
   questions = await res.json();
 
-  // Shuffle questions
+  // Shuffle questions randomly
   questions = questions.sort(() => 0.5 - Math.random());
 
   loadQuestion();
@@ -63,11 +63,11 @@ function checkAnswer(selected, clickedBtn) {
   const scoreEl = document.getElementById("score");
 
   if (selected === currentQuestion.answer) {
-    score += 1;
+    score += 1; // +1 for correct
     result.innerText = "✅ Correct!";
     result.style.color = "green";
   } else {
-    score -= 1;
+    score -= 0.5; // -0.5 for wrong
     result.innerText = `❌ Wrong! Correct answer: ${currentQuestion.options[currentQuestion.answer]}`;
     result.style.color = "red";
   }
@@ -80,5 +80,5 @@ function checkAnswer(selected, clickedBtn) {
   }, 1500);
 }
 
-// Start quiz
+// Start the quiz
 loadQuestions();
