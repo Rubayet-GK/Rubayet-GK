@@ -1,5 +1,5 @@
 body {
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   text-align: center;
   background: #f0f0f0;
 }
@@ -13,6 +13,13 @@ body {
   box-shadow: 0 0 10px #ccc;
 }
 
+#score {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
 button {
   display: block;
   margin: 10px auto;
@@ -23,6 +30,7 @@ button {
   background: #3498db;
   color: white;
   border-radius: 5px;
+  font-size: 16px;
 }
 
 button:hover {
@@ -32,4 +40,19 @@ button:hover {
 #result {
   font-weight: bold;
   margin-top: 10px;
+}
+
+/* Correct / Wrong flash colors */
+.correct {
+  background-color: #2ecc71 !important; /* green */
+  color: white;
+}
+
+.wrong {
+  background-color: #e74c3c !important; /* red */
+}
+
+/* Button press effect */
+button:active {
+  transform: scale(0.97);
 }
